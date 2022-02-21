@@ -1,30 +1,17 @@
+<!-- links:-->
+<!-- voir : https://layercake.graphics/example-ssr/Line&ndash;&gt;-->
+<!-- https://www.visualcinnamon.com/2016/06/fun-data-visualizations-svg-gooey-effect/-->
+
 <script>
-	export let name;
+    import LWChart from "./components/LWChart.svelte";
+    import D31 from "./components/D31.svelte";
+    import D3FC2 from "./components/D3FC2.svelte";
 </script>
 
-<main>
-	<h1>Hello {name}!!!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+<div>
+    <LWChart></LWChart>
+<!--    HOP-->
+<!--    <D31></D31>-->
+<!--    HOP-->
+<!--    <D3FC2></D3FC2>-->
+</div>
