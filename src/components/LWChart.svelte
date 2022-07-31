@@ -108,10 +108,11 @@
     let askPrice = 0
     lineSeriesPERP.setMarkers(markers)
     const socket = new WebSocket("wss://ftx.com/ws/");
+    const symbol = "ETH-PERP"
     socket.addEventListener('open', function (event) {
-        socket.send('{"op": "subscribe", "channel": "trades", "market": "ETH-PERP"}')
-        socket.send('{"op": "subscribe", "channel": "orderbook", "market": "ETH-PERP"}')
-        socket.send('{"op": "subscribe", "channel": "ticker", "market": "ETH-PERP"}')
+        socket.send('{"op": "subscribe", "channel": "trades", "market": "'+symbol+'"}')
+        socket.send('{"op": "subscribe", "channel": "orderbook", "market": "'+symbol+'"}')
+        socket.send('{"op": "subscribe", "channel": "ticker", "market": "'+symbol+'"}')
     });
 
     let lastTime = 0
@@ -171,8 +172,9 @@
         let maxAsk = Math.max(...asks.values())
         let max = Math.max(maxBid, maxAsk)
         removeLines()
+
         for (const [price, size] of bids.entries()) {
-            if (size > 0) {
+            if (size > 100000) {
                 let ratio = 0.1+(size / max)*0.9
                 let label = size
 
@@ -180,7 +182,7 @@
                     price: price,
                     color: "rgba(0,250,0," + ratio + ")",
                     lineWidth: 0.5+ (3 * ratio),
-                    axisLabelVisible: (size >= max / 3),
+                    axisLabelVisible: (size >= max / 10),
                     title: label,
                     lineStyle: LightweightCharts.LineStyle.Solid
                 }
@@ -189,7 +191,7 @@
             }
         }
         for (const [price, size] of asks.entries()) {
-            if (size > 0) {
+            if (size > 100000) {
                 let ratio = 0.1+(size / max)*0.9
                 let label = size
 
